@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ScbiMultiGzReader::VERSION
   spec.authors       = ["dariogf"]
   spec.email         = ["dariogf@scbi.uma.es"]
-  spec.summary       = %q{Reads gz files with multiple streams in ruby}
-  spec.description   = %q{Wrapper to read gz files composed of multiple gz streams (eg, made by doing a cat to join some gz files in a bigger one.)}
+  spec.summary       = %q{Reads gz/gzip files with multiple streams in ruby}
+  spec.description   = %q{Wrapper to read gz/gzip files  composed of multiple gz streams (eg, made by doing a cat to join some gz files in a bigger one.)}
   spec.homepage      = ""
   spec.license       = "MIT"
 

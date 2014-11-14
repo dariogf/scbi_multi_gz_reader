@@ -15,26 +15,32 @@ class MultiGzReader
 			res=@io.readline
 		rescue EOFError => e
 
-			#final alcanzado, ver si queda algo por leer
+			#reached END, check if there is more data to read
 			unused = @io.unused
+
 			@io.finish
 
-			#queda algo por leer
+			# there is something left to read, open another stream
 			if !unused.nil?
-				#puts "FIN1, fpos: #{@file.pos}, unused: #{unused.length}"
-
+				#puts "FIN1, fpos: #{@file.pos}, unused: #{unused.length}, io_eof: #{@io.eof}, eof: #{@file.eof}"
+			
 				@file.pos -= unused.length
-				#puts "OPEN2, fpos: #{@file.pos}, unused: #{unused.length}"
-
 				@io = Zlib::GzipReader.new @file
-				res=@io.readline
-			else 
+				#repeat the read so there is no eof error
+				res=readline
+
+			else
+				#no more data to read, return nil
 				res=nil
 			end
-
 		end
 
 		return res
+	end
+
+	def eof?
+		#nothing more to read
+		@io.unused.nil? && (@io.closed? || @io.eof?) && (@file.closed? || @file.eof?)
 	end
 
 	def close
