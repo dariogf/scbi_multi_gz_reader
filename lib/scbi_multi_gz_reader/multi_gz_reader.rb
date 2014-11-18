@@ -3,7 +3,9 @@ require 'zlib'
 class MultiGzReader
 
 	def initialize(file_name)
-		@file = File.open(file_name)
+		@file_name=file_name
+
+		@file = File.open(@file_name)
 		@io = Zlib::GzipReader.new @file
 	end
 
@@ -46,6 +48,12 @@ class MultiGzReader
 	def close
 		#@io.finish
 		@file.close
+	end
+
+	def rewind
+		close
+		@file = File.open(@file_name)
+		@io = Zlib::GzipReader.new @file
 	end
 
 end

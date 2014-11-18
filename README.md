@@ -27,7 +27,7 @@ Or install it yourself as:
 
 	# read checking for eof
 
-	file=MultiGzReader.new('file.gz'))
+	file=MultiGzReader.new('file.gz')
     
     while !file.eof? do
       puts file.readline
@@ -38,7 +38,7 @@ Or install it yourself as:
     ------
 
     # read checking for res.nil?
-	file=MultiGzReader.new('file.gz'))
+	file=MultiGzReader.new('file.gz')
     
 	loop do
       res=file.readline
