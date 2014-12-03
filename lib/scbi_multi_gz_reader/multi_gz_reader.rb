@@ -45,6 +45,10 @@ class MultiGzReader
 		@io.unused.nil? && (@io.closed? || @io.eof?) && (@file.closed? || @file.eof?)
 	end
 
+	def eof
+		eof?
+	end
+
 	def close
 		#@io.finish
 		@file.close
